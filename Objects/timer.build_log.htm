@@ -17,7 +17,7 @@ Library Manager: ArmAr.exe V5.06 update 7 (build 960)
 Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
 CPU DLL:         SARMCM3.DLL V5.33.0.0
 Dialog DLL:      DARMSTM.DLL V1.68.0.0
-Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.8.0
+Target DLL:      UL2CM3.DLL V1.163.9.0
 Dialog DLL:      TARMSTM.DLL V1.66.0.0
  
 <h2>Project:</h2>
@@ -26,21 +26,14 @@ Project File Date:  10/16/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
-Rebuild target 'Microcontroller'
-assembling startup_stm32f10x_md.s...
-compiling MyGPIO.c...
-compiling MyTimer.c...
-Drivers\MyTimer.c(60): warning:  #1-D: last line of file ends without a newline
-  }
-Drivers\MyTimer.c: 1 warning, 0 errors
+Build target 'Sim'
 compiling main.c...
-Source\main.c(31): warning:  #1-D: last line of file ends without a newline
+Source\main.c(35): warning:  #1-D: last line of file ends without a newline
   }
 Source\main.c: 1 warning, 0 errors
-compiling system_stm32f10x.c...
 linking...
-Program Size: Code=1320 RO-data=268 RW-data=12 ZI-data=1636  
-".\Objects\timer.axf" - 0 Error(s), 2 Warning(s).
+Program Size: Code=1520 RO-data=268 RW-data=12 ZI-data=1636  
+".\Objects\timer.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -58,7 +51,7 @@ Package Vendor: Keil
 
 <h2>Collection of Component include folders:</h2>
   .\RTE\Device\STM32F103RB
-  .\RTE\_Microcontroller
+  .\RTE\_Sim
   C:\Users\valey\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include
   C:\Users\valey\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include
 
@@ -67,10 +60,10 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.4.0
 
    * Component: Keil::Device:Startup:1.0.0
-      Source file:   Device\Source\ARM\STM32F1xx_OPT.s
       Source file:   Device\Source\system_stm32f10x.c
       Source file:   Device\Source\ARM\startup_stm32f10x_md.s
       Include file:  RTE_Driver\Config\RTE_Device.h
+      Source file:   Device\Source\ARM\STM32F1xx_OPT.s
 Build Time Elapsed:  00:00:01
 </pre>
 </body>

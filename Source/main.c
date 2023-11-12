@@ -20,10 +20,14 @@ int main (void) {
 		MyTimer_Base_Start(Temp);
 	
 	A5.GPIO = GPIOA;
-	A5.GPIO_Pin = 5;
-	A5.GPIO_Conf = Out_Ppull;
+	A5.GPIO_Pin = 0;
+	A5.GPIO_Conf = AltOut_Ppull;
+	
 	MyGPIO_Init(&A5);
 	MyTimer_ActiveIT(Temp.Timer, 0, &ToggleLed);
+	
+	MyTimerSetPWMCycle(Temp.Timer, 1, 30);
+	MyTimer_PMW(Temp.Timer, 1);
 	
 	do{
 			

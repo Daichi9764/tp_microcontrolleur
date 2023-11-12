@@ -31,34 +31,40 @@ void TIM2_IRQHandler(void) {
 	(*TIM2Handler_Fct_Ptr)();
 }
 
-void MyTimer_PMW(TIM_TypeDef * Timer, char Channel, int duty_cycle) {
+void MyTimer_PMW(TIM_TypeDef * Timer, char Channel) {
 	switch(Channel){
 		case 1:
 			Timer -> CCMR1 &= ~(TIM_CCMR1_OC1M);
 			Timer -> CCMR1 |= TIM_CCMR1_OC1M_2 | TIM_CCMR1_OC1M_1;
 			Timer-> CCER |= TIM_CCER_CC1E;
-			Timer->CCR1 = duty_cycle/100 * Timer->ARR;
 			break;
 		case 2:
 			Timer->CCMR1 &= ~(TIM_CCMR1_OC2M);
 			Timer->CCMR1 |= TIM_CCMR1_OC2M_2 | TIM_CCMR1_OC2M_2;
 			Timer->CCER |= TIM_CCER_CC2E;
-			Timer->CCR2 = duty_cycle/100 * Timer->ARR;
 			break;
 		case 3:
 			Timer->CCMR2 &= ~(TIM_CCMR2_OC3M);
 			Timer->CCMR2 |= TIM_CCMR2_OC3M_2 | TIM_CCMR2_OC3M_1;
 			Timer->CCER |= TIM_CCER_CC3E;
-			Timer->CCR3 = duty_cycle/100 * Timer->ARR;
 			break;
 		case 4:
 			Timer->CCMR2 &= ~(TIM_CCMR2_OC4M);
 			Timer->CCMR2 |= TIM_CCMR2_OC4M_2 | TIM_CCMR2_OC4M_1;
 			Timer->CCER |= TIM_CCER_CC4E;
-			Timer->CCR4 = duty_cycle/100 * Timer->ARR;
 			break;
 	}
 	Timer->CR1 |= TIM_CR1_ARPE;
 	Timer->CR1 &= ~(TIM_CR1_DIR);
 	Timer->EGR |= TIM_EGR_UG;
+}
+
+void MyTimerSetPWMCycle(TIM_TypeDef * Timer, char Channel, int cycle) {
+	Timer->CCR1 = 0x0300;
+	switch(Channel) {
+		case 1:
+			Timer->CCR1 = (Timer->ARR * cycle) / 100;
+			break;
+
+	}
 }
