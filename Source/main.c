@@ -1,11 +1,14 @@
 #include "stm32f10x.h"
 #include "MyTimer.h"
 #include "MyGPIO.h"
+#include "MyADC.h"
 
 MyGPIO_Struct_typedef A5;
 
+
+
 void ToggleLed(){
-	GPIOA->ODR ^= (0x1 << A5.GPIO_Pin);
+	MyGPIO_Toggle(A5.GPIO,A5.GPIO_Pin);
 }
 
 int main (void) {
@@ -28,6 +31,8 @@ int main (void) {
 	
 	MyTimerSetPWMCycle(Temp.Timer, 1, 30);
 	MyTimer_PMW(Temp.Timer, 1);
+	
+	ADC_init();
 	
 	do{
 			
